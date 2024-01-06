@@ -230,7 +230,7 @@ function Soundcloud() {
   const [hovered, setHovered] = useState(false)
 
   const handleClick = () => {
-    window.open('https://instagram.com/nzxaudio', '_blank')
+    window.open('https://soundcloud.com/nzxmusic', '_blank')
   }
 
   const onHover = (e) => {
