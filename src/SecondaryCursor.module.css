@@ -1,0 +1,12 @@
+.secondary-cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff; /* Customize the secondary cursor color */
+  border-radius: 50%;
+  pointer-events: none; /* Allows the cursor to "float" over other elements */
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+  z-index: 9999; /* Slightly lower z-index to be under the main cursor */
+  mix-blend-mode: difference;
+}

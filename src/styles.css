@@ -1,0 +1,143 @@
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Oxanium&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: black;
+  color: #f0f0f0;
+  font-family: 'Inter';
+}
+
+a {
+  color: #f0f0f0;
+}
+
+a {
+  pointer-events: all;
+  color: #f0f0f0;
+  text-decoration: none;
+}
+
+svg {
+  fill: #f0f0f0;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+canvas {
+  opacity: 0;
+  touch-action: none;
+  animation: fade-in 5s ease 1s forwards;
+}
+
+input {
+  font-family: 'Inter';
+  width: 100px;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  color: transparent;
+  caret-color: #555;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-weight: 400;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none !important;
+}
+
+body.custom-cursor-active {
+  cursor: none !important;
+}
+
+#custom-cursor {
+  display: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+body.custom-cursor-active:hover #custom-cursor {
+  width: 20px;
+  height: 20px;
+}
+
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.hover-link {
+  position: absolute;
+  text-decoration: none;
+  color: white; /* Default text color */
+  font-size: 13px;
+  z-index: 2; /* Above the pseudo-element */
+  transition: color 0.3s; /* Smooth transition for text color */
+}
+
+.hover-link span {
+  position: relative;
+  z-index: 3; /* Ensures text is above everything else */
+}
+
+.hover-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: white;
+  border-radius: 50%;
+  transition: width 0.3s, height 0.3s, transform 0.3s;
+  z-index: 1; /* Below the text */
+  transform: translate(-50%, -50%);
+}
+
+.hover-link:hover::before {
+  width: 80px; /* Adjust size as needed */
+  height: 80px; /* Adjust size as needed */
+}
+
+.hover-link:hover {
+  color: black; /* Text color changes to black on hover */
+}
+
+.zap {
+  background: linear-gradient(to right, hsl(0, 0%, 30%) 0, hsl(0, 0%, 100%) 20%, hsl(0, 0%, 0%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+}
