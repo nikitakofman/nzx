@@ -114,13 +114,13 @@ function Spotify() {
   }
 
   const roundedBoxGeometry = useMemo(() => {
-    const width = 0.4 // Width of the box
-    const height = 0.4 // Height of the box
-    const depth = 0.04 // Depth of the box
-    const radius = 0.04 // Radius for the edges
+    const width = 0.3 // Width of the box
+    const height = 0.3 // Height of the box
+    const depth = 0.03 // Depth of the box
+    const radius = 0.03 // Radius for the edges
 
     texture.offset.set(0.5, 0.5) // Adjust these values to change the position
-    texture.repeat.set(2, 2)
+    texture.repeat.set(3, 3)
 
     const shape = new THREE.Shape()
     shape.moveTo(-width / 2 + radius, -height / 2)
@@ -179,13 +179,13 @@ function Instagram() {
   }
 
   const roundedBoxGeometry = useMemo(() => {
-    const width = 0.4 // Width of the box
-    const height = 0.4 // Height of the box
-    const depth = 0.04 // Depth of the box
-    const radius = 0.04 // Radius for the edges
+    const width = 0.3 // Width of the box
+    const height = 0.3 // Height of the box
+    const depth = 0.03 // Depth of the box
+    const radius = 0.03 // Radius for the edges
 
     texture.offset.set(0.5, 0.5) // Adjust these values to change the position
-    texture.repeat.set(2, 2)
+    texture.repeat.set(3, 3)
 
     const shape = new THREE.Shape()
     shape.moveTo(-width / 2 + radius, -height / 2)
@@ -244,13 +244,13 @@ function Soundcloud() {
   }
 
   const roundedBoxGeometry = useMemo(() => {
-    const width = 0.4 // Width of the box
-    const height = 0.4 // Height of the box
-    const depth = 0.04 // Depth of the box
-    const radius = 0.04 // Radius for the edges
+    const width = 0.3 // Width of the box
+    const height = 0.3 // Height of the box
+    const depth = 0.03 // Depth of the box
+    const radius = 0.03 // Radius for the edges
 
     texture.offset.set(0.5, 0.5) // Adjust these values to change the position
-    texture.repeat.set(2, 2)
+    texture.repeat.set(3, 3)
 
     const shape = new THREE.Shape()
     shape.moveTo(-width / 2 + radius, -height / 2)
@@ -504,7 +504,7 @@ function DJ() {
       }
     })
 
-    return <primitive object={fbx} scale={0.0018} position={[0.9, -0.8, -0.9]} rotation={[0, -0.4, 0]} />
+    return <primitive object={fbx} scale={0.0018} position={[0.8, -0.85, -0.4]} rotation={[0, -2.1, -0.4]} />
   }
 
   return (

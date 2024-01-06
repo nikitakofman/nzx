@@ -26,18 +26,18 @@ function Overlay() {
         NZX pushes the boundaries of electronic music, <br></br>delivering a sonic voyage that transcends the ordinary.
       </div> */}
 
-      {/* <a
-        href="https://soundcloud.com/nzxmusic"
+      <a
+        href="https://nikitakofman.com"
         target="blank"
-        className=" hover-link cursor-none"
+        className="hover:text-gray-300"
         style={{
-          ...{ position: 'absolute', bottom: 40, left: 40, fontSize: '13px' }
+          ...{ position: 'absolute', bottom: 40, right: 40, fontSize: '13px' }
         }}
         onMouseEnter={() => setHoverInstagram(true)}
         onMouseLeave={() => setHoverInstagram(false)}>
-        <span>instagram</span>
+        <span>made by nikitakofman.com</span>
       </a>
-      <div>
+      {/* <div>
         {' '}
         <a
           href="https://soundcloud.com/nzxmusic"
@@ -58,7 +58,7 @@ function Overlay() {
           target="blank"
           className=" hover-link cursor-none"
           style={{
-            ...{ position: 'absolute', bottom: 40, right: 40, fontSize: '13px' }
+            ...{ position: 'absolute', bottom: 40, left: 40, fontSize: '13px' }
           }}
           onMouseEnter={() => setHoverInstagram(true)}
           onMouseLeave={() => setHoverInstagram(false)}>
