@@ -15,8 +15,10 @@ import { TextureLoader } from 'three'
 // const suzi = import('@pmndrs/assets/models/bunny.glb')
 
 export default function App() {
+  const dpr = Math.min(window.devicePixelRatio, 1.5)
+
   return (
-    <Canvas shadows dpr={[1, 1.5]} camera={{ position: [-1.5, 1, 5.5], fov: 45, near: 1, far: 20 }} eventSource={document.getElementById('root')} eventPrefix="client">
+    <Canvas shadows dpr={dpr} camera={{ position: [-1.5, 1, 5.5], fov: 45, near: 1, far: 20 }} eventSource={document.getElementById('root')} eventPrefix="client">
       {/* Lights */}
       <color attach="background" args={['black']} />
       <hemisphereLight intensity={0.3} groundColor="black" />
@@ -33,7 +35,7 @@ export default function App() {
           <planeGeometry args={[50, 50]} />
           <MeshReflectorMaterial
             blur={[300, 30]}
-            resolution={2048}
+            resolution={1024}
             mixBlur={1}
             mixStrength={80}
             roughness={1}
@@ -53,9 +55,10 @@ export default function App() {
       </group>
       {/* Postprocessing */}
       <EffectComposer disableNormalPass>
-        <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0.0} intensity={6} />
+        <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0.0} intensity={3} />
         <DepthOfField target={[0, 0, 13]} focalLength={0.3} bokehScale={1} height={700} />
       </EffectComposer>
+
       <Headphone />
       <SmallSynth />
       <DJ />
