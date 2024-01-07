@@ -49,7 +49,7 @@ export function Instances({ children, ...props }) {
 
 function Scene() {
   const fbx = useLoader(FBXLoader, '/pomni.fbx')
-  console.log(fbx)
+
   return <primitive object={fbx} />
 }
 
@@ -58,8 +58,6 @@ function MusicCassette(props) {
 
   // Using 'Object_2' as an example. Adjust based on the specific object you need
   const meshNode = nodes.Sketchfab_Scene
-
-  console.log(nodes)
 
   if (!meshNode) {
     console.error('Desired node not found in GLTF model')
@@ -115,9 +113,6 @@ export function Computers(props) {
       <instances.Object3 position={[-5.56, 1.57, 0.69]} rotation={[0, 1.17, -Math.PI / 2]} scale={-1.52} />
       <instances.Object1 position={[-5.47, 2.79, 0.74]} rotation={[Math.PI, -1.16, Math.PI / 2]} scale={1.52} />
       <instances.Object3 position={[-5.29, 3.41, 0.89]} rotation={[Math.PI, -0.76, -Math.PI / 2]} scale={-1.52} />
-
-      <Scene />
-
       <instances.Object1 position={[-5.28, 0, -2.33]} rotation={[0, 0.75, 0]} scale={1.52} />
       <instances.Object1 position={[-5.49, 0, -1.38]} rotation={[Math.PI, -0.99, Math.PI]} scale={1.52} />
       <instances.Object1 position={[-3.01, 0, -3.79]} rotation={[0, 0.6, 0]} scale={1.52} />

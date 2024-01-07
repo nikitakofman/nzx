@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { useGLTF, MeshReflectorMaterial, BakeShadows, Text, useTexture } from '@react-three/drei'
+import { useGLTF, MeshReflectorMaterial, BakeShadows, Text, useTexture, useProgress, Html } from '@react-three/drei'
 import { EffectComposer, Bloom, DepthOfField } from '@react-three/postprocessing'
 import { easing } from 'maath'
 import { suspend } from 'suspend-react'
@@ -14,65 +14,85 @@ import { TextureLoader } from 'three'
 
 // const suzi = import('@pmndrs/assets/models/bunny.glb')
 
+function Loader() {
+  const { active, progress } = useProgress()
+  return active ? (
+    <Html center>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        {/* SVG loading icon */}
+        <svg style={{ marginBottom: '10px' }} width="50" height="50" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+          {/* SVG content here, e.g., a spinning circle */}
+          <circle cx="50" cy="50" r="32" strokeWidth="8" stroke="#ff3d00" fill="none" strokeDasharray="150.79644737231007 52.26548245743669">
+            <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+          </circle>
+        </svg>
+        <div className="text-center">Loading {progress.toFixed(0)} %</div>
+      </div>
+    </Html>
+  ) : null
+}
+
 export default function App() {
   const dpr = Math.min(window.devicePixelRatio, 1.5)
 
   return (
     <Canvas shadows dpr={dpr} camera={{ position: [-1.5, 1, 5.5], fov: 45, near: 1, far: 20 }} eventSource={document.getElementById('root')} eventPrefix="client">
-      {/* Lights */}
-      <color attach="background" args={['black']} />
-      <hemisphereLight intensity={0.3} groundColor="black" />
+      <Suspense fallback={<Loader />}>
+        <color attach="background" args={['black']} />
+        <hemisphereLight intensity={0.3} groundColor="black" />
 
-      <spotLight position={[10, 20, 10]} angle={0.12} penumbra={1} intensity={1} castShadow shadow-mapSize={1024} />
-      {/* Main scene */}
-      <group position={[-0, -1, 0]}>
-        {/* Auto-instanced sketchfab model */}
-        <Instances>
-          <Computers scale={0.5} />
-        </Instances>
-        {/* Plane reflections + distance blur */}
-        <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[50, 50]} />
-          <MeshReflectorMaterial
-            blur={[300, 30]}
-            resolution={1024}
-            mixBlur={1}
-            mixStrength={80}
-            roughness={1}
-            depthScale={1.2}
-            minDepthThreshold={0.4}
-            maxDepthThreshold={1.4}
-            color="#202020"
-            metalness={0.8}
-          />
-        </mesh>
-        {/* Bunny and a light give it more realism */}
-        <Bun scale={0.4} position={[0, 0.3, 0.5]} />
-        <Pom />
+        <spotLight position={[10, 20, 10]} angle={0.12} penumbra={1} intensity={1} castShadow shadow-mapSize={1024} />
+        {/* Main scene */}
+        <group position={[-0, -1, 0]}>
+          {/* Auto-instanced sketchfab model */}
+          <Instances>
+            <Computers scale={0.5} />
+          </Instances>
+          {/* Plane reflections + distance blur */}
+          <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[50, 50]} />
+            <MeshReflectorMaterial
+              blur={[300, 30]}
+              resolution={1024}
+              mixBlur={1}
+              mixStrength={80}
+              roughness={1}
+              depthScale={1.2}
+              minDepthThreshold={0.4}
+              maxDepthThreshold={1.4}
+              color="#202020"
+              metalness={0.8}
+            />
+          </mesh>
+          {/* Bunny and a light give it more realism */}
+          <Bun scale={0.4} position={[0, 0.3, 0.5]} />
+          <Pom />
 
-        {/* <SmallSynth /> */}
-        <pointLight distance={1.5} intensity={3} position={[-0.15, 0.7, 0]} color="orange" />
-      </group>
-      {/* Postprocessing */}
-      <EffectComposer disableNormalPass>
-        <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0.0} intensity={3} />
-        <DepthOfField target={[0, 0, 13]} focalLength={0.3} bokehScale={1} height={700} />
-      </EffectComposer>
+          {/* <SmallSynth /> */}
+          <pointLight distance={1.5} intensity={3} position={[-0.15, 0.7, 0]} color="orange" />
+        </group>
+        {/* Postprocessing */}
+        <EffectComposer disableNormalPass>
+          <Bloom luminanceThreshold={0} mipmapBlur luminanceSmoothing={0.0} intensity={3} />
+          <DepthOfField target={[0, 0, 13]} focalLength={0.3} bokehScale={1} height={700} />
+        </EffectComposer>
 
-      <Headphone />
-      <SmallSynth />
-      <DJ />
-      <Speaker />
-      {/* <Insta />
+        {/* <Headphone /> */}
+        <SmallSynth />
+        <DJ />
+        <Speaker />
+        {/* <Insta />
       <Spotify /> */}
-      <Spotify />
-      <Soundcloud />
-      <Instagram />
+        <Spotify />
+        <Soundcloud />
+        <Instagram />
 
-      {/* Camera movements */}
-      <CameraRig />
-      {/* Small helper that freezes the shadows for better performance */}
-      <BakeShadows />
+        {/* Camera movements */}
+        <CameraRig />
+        {/* Small helper that freezes the shadows for better performance */}
+        <BakeShadows />
+      </Suspense>
+      {/* Lights */}
     </Canvas>
   )
 }
@@ -294,7 +314,7 @@ function Soundcloud() {
 
 const handleClick = (event) => {
   // Handle the click event
-  console.log('NZX text clicked')
+
   window.open('https://open.spotify.com/artist/5jzHLYqmqCN50yBbYoK2hx')
 }
 
