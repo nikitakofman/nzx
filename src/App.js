@@ -26,7 +26,7 @@ function Loader() {
             <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
           </circle>
         </svg>
-        <div className="text-center">Loading {progress.toFixed(0)} %</div>
+        <div className="text-center">{progress.toFixed(0)} %</div>
       </div>
     </Html>
   ) : null
